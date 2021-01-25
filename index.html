@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="/css/style.css">
+
+   <title>Document</title>
+</head>
+
+<body>
+   <div class="container">
+      <div class="form-block p-3 mt-5">
+         <h2 class="title text-center ">Add new Issue</h2>
+         <form onsubmit="submitForm(this); return false" class="form col-6 offset-3 mt-4">
+            <div class="form-group">
+               <label for="description">Issue description</label>
+               <input type="text" class="form-control" name="description" id="description" aria-describedby="helpId"
+                  placeholder="Description...">
+               <small id="descrError" class="form-text"></small>
+            </div>
+            <div class="form-group">
+               <label for="priority">Issue priority</label>
+               <select class="form-control" name="priority" id="priority">
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="hight">Hight</option>
+               </select>
+            </div>
+            <div class="form-group">
+               <label for="userTo">Assigned to</label>
+               <input type="text" class="form-control" name="user" id="userTo" aria-describedby="helpId"
+                  placeholder="Write name here...">
+               <small id="nameError" class="form-text"></small>
+            </div>
+            <button disabled type="submit" type="button" class="sendForm btn btn-primary">Add</button>
+         </form>
+      </div>
+      <hr>
+
+      <h3 class="text-center">Issues list</h3>
+      <div class="tasks ">
+         <div class="tasks__list col-6 offset-3 mt-4">
+         </div>
+      </div>
+   </div>
+
+
+   <!--scripts-->
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+   </script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+   </script>
+   <script src="/js/script.js"></script>
+</body>
+
+</html>

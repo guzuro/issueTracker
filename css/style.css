@@ -1,0 +1,12 @@
+small {
+  color: red;
+}
+
+.sendForm:disabled{
+  cursor: no-drop;
+}
+
+.form-block {
+  background-color: aliceblue;
+  border-radius: 10px;
+}
