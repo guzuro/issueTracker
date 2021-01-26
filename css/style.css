@@ -1,12 +1,40 @@
+p{
+  margin: 5px;
+}
+
 small {
   color: red;
 }
 
-.sendForm:disabled{
+.sendForm:disabled {
   cursor: no-drop;
 }
 
 .form-block {
   background-color: aliceblue;
   border-radius: 10px;
+}
+
+.task__item {
+  border-radius: 5px;
+  background-color: #c2d1e5;
+  word-break: break-all;
+}
+
+.task__left {
+  border-right: 1px #9eacc9 dotted;
+}
+
+.title {
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.task_header {
+  border-bottom: 1px #9eacc9 dotted;
+  font-size: 14px;
+}
+
+.task__status {
+  text-transform: uppercase;
 }
