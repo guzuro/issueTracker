@@ -8,15 +8,17 @@ const submitButton = document.querySelector(".sendForm");
 
 let issuesArr = [];
 
+let status = ["Open", "Complete"];
+
 window.onload = function () {
    issuesArr = JSON.parse(localStorage.getItem("issue")) || []
-   if(issuesArr!== null) showItems(issuesArr);
+   if (issuesArr !== null) showItems(issuesArr);
 }
 
 function showItems(itemsArray) {
    let items = itemsArray.map(item => {
       return `
-      <div class="task__item col-lg-9 mb-2 p-1 ml-auto mr-auto">
+   <div class=" task__item col-lg-9 mb-2 p-1 ml-auto mr-auto" data-id="${item.id}">
       <div class="container">
          <div class="row task_header mb-2">
             <div class="id_block col">
@@ -30,7 +32,7 @@ function showItems(itemsArray) {
          </div>
          <div class="row">
             <p class="col-3 task__left title">Status: </p>
-            <p class="col task__status">Open</p>
+            <p data-id="${item.id}" class="col task__status">${item.status}</p>
          </div>
 
          <div class="row">
@@ -50,8 +52,8 @@ function showItems(itemsArray) {
 
          <div class="row justify-content-between">
             <div class="buttons">
-               <button class="btn btn-warning done">Done</button>
-               <button class="btn btn-danger ml-2 delete">Delete</button>
+               <button data-id="${item.id}" onclick=completeIssue(event) class="btn btn-warning complete">Done</button>
+               <button data-id="${item.id}" onclick=removeIssue(event) class="btn btn-danger ml-2 delete">Delete</button>
             </div>
          </div>
       </div>
@@ -92,10 +94,21 @@ function submitForm(formData) {
 }
 
 function modifyData(data) {
+   let date = new Date();
+
+   let options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+   };
    return data = {
       ...data,
       "id": create_ID(),
-      "date": new Date()
+      "date": date.toLocaleString("en-EN", options),
+      "status": status[0]
    }
 }
 
@@ -114,4 +127,27 @@ function create_ID() {
       return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
    });
    return uuid;
+}
+
+function completeIssue(e) {
+   let currentID = e.target.dataset.id;
+   let statuses = document.querySelectorAll('.task__status');
+   statuses.forEach(element => {
+      if (currentID == element.dataset.id) element.innerText = status[1];
+   })
+   issuesArr = issuesArr.map(element => {
+      if (element.id == currentID) element.status = status[1]
+      return element
+   })
+   localStorage.setItem("issue", JSON.stringify(issuesArr));
+}
+
+function removeIssue(e) {
+   let currentID = e.target.dataset.id;
+   let items = document.querySelectorAll('.task__item');
+   items.forEach(element => {
+      if (currentID === element.dataset.id) element.remove();
+   })
+   issuesArr = issuesArr.filter(item => item.id !== currentID);
+   localStorage.setItem("issue", JSON.stringify(issuesArr));
 }
